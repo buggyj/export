@@ -2,7 +2,7 @@
 "plugin-type":"plugin",
  "type":"application/json",
  "tags":"preact-applet",
- "title":"$:/plugins/developer/buildtw",
+ "title":"$:/plugins/bj/export",
  "version":"0.0.1",
  "list":"readme license"
 }
