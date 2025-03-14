@@ -1,0 +1,13 @@
+created: 20250211130305632
+title: $:/bj/export/pluginInitDo
+type: application/x-bclip
+tags: 
+modified: 20250215064720671
+
+//start of json string
+%twfiles={"tiddlers": [
+%count=0
+
+//create zip file handle
+#nul=((*@createzip()*))
+

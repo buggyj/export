@@ -1,0 +1,26 @@
+created: 20250211130922683
+title: $:/bj/export/pluginEndDo
+type: application/x-bclip
+tags: 
+modified: 20250215094244405
+
+//add end of json string
+%twfiles=((*%twfiles*))]}
+//add to zip
+#zero=0
+#nul=((*!%count==#zero*??*@addToZip(mjs/tiddlywiki.files,%twfiles)*))
+
+//remove boy of plugin -already stored as tiddlers
+#nul=((*@delete($text)*))
+
+//convert to plugin.info
+#contents=((*@makeContents(json)*))
+
+//add to zip
+#nul=((*@addToZip(plugin.info,#contents)*))
+//do not save as tiddler
+$title=
+
+#zipcontent=((*@getzipcontents()*))
+#nul=((*@saveto(@name,#zipcontent,zips)*))
+

@@ -1,0 +1,12 @@
+created: 20250211130236002
+title: $:/bj/export/pluginRule
+type: text/vnd.tiddlywiki
+tags: 
+modified: 20250215065156423
+
+\rules only table wikilink prettylink
+
+|!Title|!Body|!Tags|!Fields modifiers|!field initials|!Modes|
+||||[[$:/bj/export/pluginInitDo]]||normal oneshot|
+||||[[$:/bj/export/pluginDo]]|||
+|((*@plugin*))|||[[$:/bj/export/pluginEndDo]]||read normal  final|

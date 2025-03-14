@@ -1,0 +1,9 @@
+created: 20250210105440440
+tags: 
+title: $:/bj/export/plugin/config
+modified: 20250215112949065
+type: 
+
+!default
+|!Category|!Tip|!Tags|!Rule Tid|!Modes|
+|exportsimple|||[[$:/bj/export/pluginRule]]|tiddlerFilter|

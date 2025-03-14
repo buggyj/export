@@ -1,0 +1,65 @@
+created: 20250211130900753
+title: $:/bj/export/pluginDo
+type: application/x-bclip
+tags: 
+modified: 20250215103137718
+
+#js=application/javascript
+#css=text/css
+#bar=/
+#blank=
+#no=no
+#one=1
+#comma=,
+#dot=.
+#last=-1
+#tid=.tid
+
+//split title from plugin/content-tid - 'plugin_title+->+title'
+$title=((*@split($title,->,#last)*))
+ 
+//split title on '/' and get last part of tid name 
+#filename=((*@split($title,#bar,#last)*))
+
+//get file extension
+
+#fileext=((*@split(#filename,#dot,#last)*))
+
+#mjs=mjs
+#mjsdir=mjs/
+
+#ext=((*#fileext*))
+#countplus=((*%count+#one*))
+%count=((*#ext==#mjs*??*#countplus*??*@abort()*))
+
+//split title on '/' and get last item
+#filenamepath=((*@split($title,#bar,#last)*))
+
+//enter detail for tiddlywiki.files for files with .mjs extension
+#details={"file":"((*#filename*))","fields":{"type":"((*$type*))","module-type":"((*$module-type*))","title": "((*$title*))"}}
+
+//no comma before first item in list 
+#comma=((*%count==#one*??*#blank*??*#comma*))
+#details=((*#comma*))((*#details*))
+
+//add to string that's going to make tiddlywiki.files 
+%twfiles=((*%twfiles*))((*#ext==#mjs*??*#details*??*@abort()*))
+
+//create file contents from tid, prepending fields, 
+//except js and css that have tid info put into a comment 
+ 
+//if no type create 'empty' type
+#nul=((*@$$touch($type)*))
+
+#includefields=yes
+#includefields=((*$type==#js*??*#no*??*#includefields*))
+#includefields=((*$type==#css*??*#no*??*#includefields*))
+
+#contents=((*#includefields==#no*??*@addtextHeader()*??*@makeContents()*))
+
+//tids with ext 'mjs' go into subdir mjs, add .tid file extension where needed
+#filename=((*#fileext==#mjs*??*#mjsdir*))((*#filename*))((*#includefields==#no*??*#blank*??*#tid*))
+
+//add to zip
+#nul=((*@addToZip(#filename,#contents)*))
+$title=
